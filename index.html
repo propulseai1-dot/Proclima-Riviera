@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" x-data="proclimaApp()" x-init="initLang()" @scroll.window="scrolled = (window.pageYOffset > 20) ? true : false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>ProClima | Service Premium</title>
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #ffffff; scroll-behavior: smooth; overflow-x: hidden; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .active-lang { background-color: #2563eb !important; color: white !important; border-radius: 9999px; }
+        .hero-title { background: linear-gradient(to right, #ffffff, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .service-card { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .slider-container { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <a href="https://wa.me/529841386834" target="_blank" class="fixed bottom-4 right-4 z-[100] bg-[#25d366] p-3 md:p-4 rounded-2xl shadow-2xl flex items-center gap-2 active:scale-95 transition-transform">
+        <i class="fab fa-whatsapp text-2xl text-white"></i>
+        <span class="font-bold text-white text-sm md:text-base" x-text="lang === 'es' ? 'Cotizar' : 'Quote'"></span>
+    </a>
+
+    <nav class="fixed w-full z-50 transition-all duration-500 px-4 md:px-6 py-4" :class="scrolled ? 'bg-black/95 py-2 shadow-2xl border-b border-white/10' : 'bg-transparent'">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo.png" alt="ProClima Logo" 
+                     class="transition-all duration-500 object-contain" 
+                     :class="scrolled ? 'h-14 md:h-16' : 'h-24 md:h-32'">
+            </div>
+            <div class="flex items-center glass rounded-full p-1 border border-white/10 scale-90 md:scale-100">
+                <button @click="lang = 'es'" :class="lang === 'es' ? 'active-lang' : 'text-gray-500'" class="px-5 py-2 text-[10px] md:text-xs font-black">ES</button>
+                <button @click="lang = 'en'" :class="lang === 'en' ? 'active-lang' : 'text-gray-500'" class="px-5 py-2 text-[10px] md:text-xs font-black">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-48 pb-12 overflow-hidden text-center px-4">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-black/80 to-black z-10"></div>
+            <img src="fondo.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30 z-0" alt="ProClima Chantiers" onerror="this.src='https://images.unsplash.com/photo-1581094288338-2314dddb7dee?q=80&w=2000'">
+        </div>
+        <div class="relative z-20 max-w-5xl mx-auto" x-cloak>
+            <h1 class="text-4xl md:text-8xl font-black mb-16 hero-title leading-relaxed md:leading-[1.2] px-2">
+                <span x-show="lang === 'es'">Confort Total para tu Hogar</span>
+                <span x-show="lang === 'en'">Ultimate Comfort for your Home</span>
+            </h1>
+            <p class="text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-10 px-4 mt-12">
+                <span x-show="lang === 'es'">Climas, Plomería y Electricidad. Calidad profesional en Riviera Maya.</span>
+                <span x-show="lang === 'en'">AC, Plumbing, and Electricity. Professional quality in Riviera Maya.</span>
+            </p>
+            <div class="flex flex-col items-center gap-6">
+                <a href="#servicios" class="inline-block bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-xl font-black text-lg shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 transition-all">
+                    <span x-text="lang === 'es' ? 'Ver Servicios' : 'Our Services'"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-black/50" x-data="{ 
+        activeSlide: 0, 
+        slides: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'],
+        next() { this.activeSlide = (this.activeSlide + 1) % this.slides.length },
+        prev() { this.activeSlide = (this.activeSlide - 1 + this.slides.length) % this.slides.length }
+    }" x-init="setInterval(() => next(), 5000)">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-widest text-blue-400">
+                <span x-show="lang === 'es'">Nuestras Realizaciones</span>
+                <span x-show="lang === 'en'">Our Work</span>
+            </h2>
+            <div class="relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl bg-black aspect-video">
+                <div class="slider-container h-full" :style="'transform: translateX(-' + (activeSlide * 100) + '%)'">
+                    <template x-for="slide in slides" :key="slide">
+                        <div class="slide flex items-center justify-center">
+                            <img :src="slide" class="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm scale-110" onerror="this.src='https://via.placeholder.com/800x450/111827/3b82f6?text=ProClima'">
+                            <img :src="slide" class="relative h-full w-auto max-w-full object-contain" onerror="this.src='https://via.placeholder.com/800x450/111827/3b82f6?text=ProClima'">
+                        </div>
+                    </template>
+                </div>
+                <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <i class="fas fa-chevron-left text-white"></i>
+                </button>
+                <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <i class="fas fa-chevron-right text-white"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 px-4 md:px-6 relative max-w-7xl mx-auto" x-cloak>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
+                <div class="w-14 h-14 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
+                    <i class="fas fa-snowflake text-3xl text-blue-500"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Aire Acondicionado' : 'Air Conditioning'"></h3>
+                <ul class="space-y-4 text-gray-400 text-sm font-medium">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Instalación' : 'Installation'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Mantenimiento' : 'Maintenance'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Carga de Gas' : 'Gas Refill'"></span></li>
+                </ul>
+            </div>
+            <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
+                <div class="w-14 h-14 bg-blue-400/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
+                    <i class="fas fa-faucet-drip text-3xl text-blue-400"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Plomería' : 'Plumbing'"></h3>
+                <ul class="space-y-4 text-gray-400 text-sm font-medium">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Fugas' : 'Leaks'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Bombas' : 'Pumps'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Boilers' : 'Water Heaters'"></span></li>
+                </ul>
+            </div>
+            <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
+                <div class="w-14 h-14 bg-yellow-500/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
+                    <i class="fas fa-bolt text-3xl text-yellow-500"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Electricidad' : 'Electricity'"></h3>
+                <ul class="space-y-4 text-gray-400 text-sm font-medium">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Cortocircuitos' : 'Short Circuits'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Tableros de Carga' : 'Load Centers'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Iluminación LED' : 'LED Lighting'"></span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 bg-black/50 text-center px-4">
+        <div class="mb-8 flex justify-center transition-transform hover:scale-105">
+            <img src="logo.png" alt="ProClima Logo" class="h-24 md:h-32 w-auto opacity-100 object-contain">
+        </div>
+        <p class="text-gray-600 text-[10px] tracking-[0.3em] uppercase">Riviera Maya • Mexico • 2026</p>
+    </footer>
+
+    <script>
+        function proclimaApp() {
+            return {
+                lang: 'es',
+                scrolled: false,
+                initLang() {
+                    const userLang = navigator.language || navigator.userLanguage;
+                    this.lang = userLang.startsWith('en') ? 'en' : 'es';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
