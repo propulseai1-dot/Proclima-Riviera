@@ -55,8 +55,8 @@
                 <span x-show="lang === 'en'">Ultimate Comfort for your Home</span>
             </h1>
             <p class="text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-10 px-4 mt-12">
-                <span x-show="lang === 'es'">Climas, Plomería y Electricidad. Calidad profesional en Riviera Maya.</span>
-                <span x-show="lang === 'en'">AC, Plumbing, and Electricity. Professional quality in Riviera Maya.</span>
+                <span x-show="lang === 'es'">Especialistas en Aire Acondicionado y Electricidad. Calidad profesional en Riviera Maya.</span>
+                <span x-show="lang === 'en'">Specialists in AC and Electricity. Professional quality in Riviera Maya.</span>
             </p>
             <div class="flex flex-col items-center gap-6">
                 <a href="#servicios" class="inline-block bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-xl font-black text-lg shadow-[0_0_30px_rgba(37,99,235,0.4)] active:scale-95 transition-all">
@@ -68,7 +68,7 @@
 
     <section class="py-16 bg-black/50" x-data="{ 
         activeSlide: 0, 
-        slides: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'],
+        slides: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg', 'photo10.jpg'],
         next() { this.activeSlide = (this.activeSlide + 1) % this.slides.length },
         prev() { this.activeSlide = (this.activeSlide - 1 + this.slides.length) % this.slides.length }
     }" x-init="setInterval(() => next(), 5000)">
@@ -96,39 +96,29 @@
         </div>
     </section>
 
-    <section id="servicios" class="py-24 px-4 md:px-6 relative max-w-7xl mx-auto" x-cloak>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <section id="servicios" class="py-24 px-4 md:px-6 relative max-w-5xl mx-auto" x-cloak>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
                 <div class="w-14 h-14 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
                     <i class="fas fa-snowflake text-3xl text-blue-500"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Aire Acondicionado' : 'Air Conditioning'"></h3>
                 <ul class="space-y-4 text-gray-400 text-sm font-medium">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Instalación' : 'Installation'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Mantenimiento' : 'Maintenance'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Carga de Gas' : 'Gas Refill'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Instalación Premium' : 'Premium Installation'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Mantenimiento Preventivo' : 'Preventive Maintenance'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-500"></i> <span x-text="lang === 'es' ? 'Reparación y Carga de Gas' : 'Repair and Gas Refill'"></span></li>
                 </ul>
             </div>
-            <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
-                <div class="w-14 h-14 bg-blue-400/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
-                    <i class="fas fa-faucet-drip text-3xl text-blue-400"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Plomería' : 'Plumbing'"></h3>
-                <ul class="space-y-4 text-gray-400 text-sm font-medium">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Fugas' : 'Leaks'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Bombas' : 'Pumps'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400"></i> <span x-text="lang === 'es' ? 'Boilers' : 'Water Heaters'"></span></li>
-                </ul>
-            </div>
+
             <div class="glass p-10 rounded-[2.5rem] service-card group text-center md:text-left">
                 <div class="w-14 h-14 bg-yellow-500/20 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0">
                     <i class="fas fa-bolt text-3xl text-yellow-500"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 uppercase tracking-tight" x-text="lang === 'es' ? 'Electricidad' : 'Electricity'"></h3>
                 <ul class="space-y-4 text-gray-400 text-sm font-medium">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Cortocircuitos' : 'Short Circuits'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Tableros de Carga' : 'Load Centers'"></span></li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Iluminación LED' : 'LED Lighting'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Cortocircuitos y Fallas' : 'Short Circuits & Faults'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Tableros y Balanceo de Carga' : 'Load Centers & Balancing'"></span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-yellow-500"></i> <span x-text="lang === 'es' ? 'Iluminación LED y Diseño' : 'LED Lighting & Design'"></span></li>
                 </ul>
             </div>
         </div>
