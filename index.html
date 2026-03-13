@@ -68,7 +68,7 @@
 
     <section class="py-16 bg-black/50" x-data="{ 
         activeSlide: 0, 
-        slides: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg', 'photo10.jpg'],
+        slides: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg'],
         next() { this.activeSlide = (this.activeSlide + 1) % this.slides.length },
         prev() { this.activeSlide = (this.activeSlide - 1 + this.slides.length) % this.slides.length }
     }" x-init="setInterval(() => next(), 5000)">
